@@ -1,0 +1,34 @@
+{
+  "data": [
+    {
+      "type": "mascots",
+      "id": 0,
+      "imageUrl": "../images/mascots/emberconf-2015-tomster-8095d8ec.png"
+    },
+    {
+      "type": "mascots",
+      "id": 1,
+      "imageUrl": "../images/mascots/emberconf-2016-tomster-7fe07543.png"
+    },
+    {
+      "type": "mascots",
+      "id": 2,
+      "imageUrl": "../images/mascots/skylight-both-909158f5.png"
+    },
+    {
+      "type": "mascots",
+      "id": 3,
+      "imageUrl": "../images/mascots/sandiego-zoey-b7637d09.png"
+    },
+    {
+      "type": "mascots",
+      "id": 4,
+      "imageUrl": "../images/mascots/nyc-a338e1f8.png"
+    },
+    {
+      "type": "mascots",
+      "id": 5,
+      "imageUrl": "../images/ember.png"
+    }
+  ]
+}
