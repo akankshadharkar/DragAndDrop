@@ -129,13 +129,13 @@ export default class DragDrop extends Component {
           let otherModel = otherSprite.owner.value;
 
           const timeNow = Date.now();
-          if( timeNow - ankConst > 53){
+          // if( timeNow - ankConst > 53){
             // console.info("MYMODEL, OTHERMODEL", myModel, otherModel)
             let myPriority = myModel.sortedPriorityValue;
             set(myModel, 'sortPriority', otherModel.sortedPriorityValue);
             set(otherModel, 'sortPriority', myPriority);
             ankConst = timeNow;
-          }
+          // }
 
         }
       });

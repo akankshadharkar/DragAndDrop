@@ -206,6 +206,426 @@ export default class IndexRoute extends Route {
           "id": 15,
           "imageUrl": "../images/vainglory/gwen.png",
           "title" : ":D"
+        },
+        {
+          "type": "mascots",
+          "id": 9,
+          "imageUrl": "../images/vainglory/lyra.png",
+          "title" : ":)"
+        },
+        {
+          "type": "mascots",
+          "id": 10,
+          "imageUrl": "../images/vainglory/taka.png",
+          "title" : ":D"
+        },
+        {
+          "type": "mascots",
+          "id": 11,
+          "imageUrl": "../images/vainglory/varya.png",
+          "title" : "crushed"
+        },
+        {
+          "type": "mascots",
+          "id": 12,
+          "imageUrl": "../images/vainglory/celeste2.png",
+          "title" : "it"
+        },
+        {
+          "type": "mascots",
+          "id": 13,
+          "imageUrl": "../images/vainglory/samual.png",
+          "title" : "!!!!"
+        },
+        {
+          "type": "mascots",
+          "id": 14,
+          "imageUrl": "../images/vainglory/kinetic.png",
+          "title" : ":)"
+        },
+        {
+          "type": "mascots",
+          "id": 15,
+          "imageUrl": "../images/vainglory/gwen.png",
+          "title" : ":D"
+        },
+        {
+          "type": "mascots",
+          "id": 9,
+          "imageUrl": "../images/vainglory/lyra.png",
+          "title" : ":)"
+        },
+        {
+          "type": "mascots",
+          "id": 10,
+          "imageUrl": "../images/vainglory/taka.png",
+          "title" : ":D"
+        },
+        {
+          "type": "mascots",
+          "id": 11,
+          "imageUrl": "../images/vainglory/varya.png",
+          "title" : "crushed"
+        },
+        {
+          "type": "mascots",
+          "id": 12,
+          "imageUrl": "../images/vainglory/celeste2.png",
+          "title" : "it"
+        },
+        {
+          "type": "mascots",
+          "id": 13,
+          "imageUrl": "../images/vainglory/samual.png",
+          "title" : "!!!!"
+        },
+        {
+          "type": "mascots",
+          "id": 14,
+          "imageUrl": "../images/vainglory/kinetic.png",
+          "title" : ":)"
+        },
+        {
+          "type": "mascots",
+          "id": 15,
+          "imageUrl": "../images/vainglory/gwen.png",
+          "title" : ":D"
+        },
+        {
+          "type": "mascots",
+          "id": 9,
+          "imageUrl": "../images/vainglory/lyra.png",
+          "title" : ":)"
+        },
+        {
+          "type": "mascots",
+          "id": 10,
+          "imageUrl": "../images/vainglory/taka.png",
+          "title" : ":D"
+        },
+        {
+          "type": "mascots",
+          "id": 11,
+          "imageUrl": "../images/vainglory/varya.png",
+          "title" : "crushed"
+        },
+        {
+          "type": "mascots",
+          "id": 12,
+          "imageUrl": "../images/vainglory/celeste2.png",
+          "title" : "it"
+        },
+        {
+          "type": "mascots",
+          "id": 13,
+          "imageUrl": "../images/vainglory/samual.png",
+          "title" : "!!!!"
+        },
+        {
+          "type": "mascots",
+          "id": 14,
+          "imageUrl": "../images/vainglory/kinetic.png",
+          "title" : ":)"
+        },
+        {
+          "type": "mascots",
+          "id": 15,
+          "imageUrl": "../images/vainglory/gwen.png",
+          "title" : ":D"
+        },
+        {
+          "type": "mascots",
+          "id": 9,
+          "imageUrl": "../images/vainglory/lyra.png",
+          "title" : ":)"
+        },
+        {
+          "type": "mascots",
+          "id": 10,
+          "imageUrl": "../images/vainglory/taka.png",
+          "title" : ":D"
+        },
+        {
+          "type": "mascots",
+          "id": 11,
+          "imageUrl": "../images/vainglory/varya.png",
+          "title" : "crushed"
+        },
+        {
+          "type": "mascots",
+          "id": 12,
+          "imageUrl": "../images/vainglory/celeste2.png",
+          "title" : "it"
+        },
+        {
+          "type": "mascots",
+          "id": 13,
+          "imageUrl": "../images/vainglory/samual.png",
+          "title" : "!!!!"
+        },
+        {
+          "type": "mascots",
+          "id": 14,
+          "imageUrl": "../images/vainglory/kinetic.png",
+          "title" : ":)"
+        },
+        {
+          "type": "mascots",
+          "id": 15,
+          "imageUrl": "../images/vainglory/gwen.png",
+          "title" : ":D"
+        },
+        {
+          "type": "mascots",
+          "id": 9,
+          "imageUrl": "../images/vainglory/lyra.png",
+          "title" : ":)"
+        },
+        {
+          "type": "mascots",
+          "id": 10,
+          "imageUrl": "../images/vainglory/taka.png",
+          "title" : ":D"
+        },
+        {
+          "type": "mascots",
+          "id": 11,
+          "imageUrl": "../images/vainglory/varya.png",
+          "title" : "crushed"
+        },
+        {
+          "type": "mascots",
+          "id": 12,
+          "imageUrl": "../images/vainglory/celeste2.png",
+          "title" : "it"
+        },
+        {
+          "type": "mascots",
+          "id": 13,
+          "imageUrl": "../images/vainglory/samual.png",
+          "title" : "!!!!"
+        },
+        {
+          "type": "mascots",
+          "id": 14,
+          "imageUrl": "../images/vainglory/kinetic.png",
+          "title" : ":)"
+        },
+        {
+          "type": "mascots",
+          "id": 15,
+          "imageUrl": "../images/vainglory/gwen.png",
+          "title" : ":D"
+        },
+        {
+          "type": "mascots",
+          "id": 9,
+          "imageUrl": "../images/vainglory/lyra.png",
+          "title" : ":)"
+        },
+        {
+          "type": "mascots",
+          "id": 10,
+          "imageUrl": "../images/vainglory/taka.png",
+          "title" : ":D"
+        },
+        {
+          "type": "mascots",
+          "id": 11,
+          "imageUrl": "../images/vainglory/varya.png",
+          "title" : "crushed"
+        },
+        {
+          "type": "mascots",
+          "id": 12,
+          "imageUrl": "../images/vainglory/celeste2.png",
+          "title" : "it"
+        },
+        {
+          "type": "mascots",
+          "id": 13,
+          "imageUrl": "../images/vainglory/samual.png",
+          "title" : "!!!!"
+        },
+        {
+          "type": "mascots",
+          "id": 14,
+          "imageUrl": "../images/vainglory/kinetic.png",
+          "title" : ":)"
+        },
+        {
+          "type": "mascots",
+          "id": 15,
+          "imageUrl": "../images/vainglory/gwen.png",
+          "title" : ":D"
+        },
+        {
+          "type": "mascots",
+          "id": 9,
+          "imageUrl": "../images/vainglory/lyra.png",
+          "title" : ":)"
+        },
+        {
+          "type": "mascots",
+          "id": 10,
+          "imageUrl": "../images/vainglory/taka.png",
+          "title" : ":D"
+        },
+        {
+          "type": "mascots",
+          "id": 11,
+          "imageUrl": "../images/vainglory/varya.png",
+          "title" : "crushed"
+        },
+        {
+          "type": "mascots",
+          "id": 12,
+          "imageUrl": "../images/vainglory/celeste2.png",
+          "title" : "it"
+        },
+        {
+          "type": "mascots",
+          "id": 13,
+          "imageUrl": "../images/vainglory/samual.png",
+          "title" : "!!!!"
+        },
+        {
+          "type": "mascots",
+          "id": 14,
+          "imageUrl": "../images/vainglory/kinetic.png",
+          "title" : ":)"
+        },
+        {
+          "type": "mascots",
+          "id": 15,
+          "imageUrl": "../images/vainglory/gwen.png",
+          "title" : ":D"
+        },
+        {
+          "type": "mascots",
+          "id": 9,
+          "imageUrl": "../images/vainglory/lyra.png",
+          "title" : ":)"
+        },
+        {
+          "type": "mascots",
+          "id": 10,
+          "imageUrl": "../images/vainglory/taka.png",
+          "title" : ":D"
+        },
+        {
+          "type": "mascots",
+          "id": 11,
+          "imageUrl": "../images/vainglory/varya.png",
+          "title" : "crushed"
+        },
+        {
+          "type": "mascots",
+          "id": 12,
+          "imageUrl": "../images/vainglory/celeste2.png",
+          "title" : "it"
+        },
+        {
+          "type": "mascots",
+          "id": 13,
+          "imageUrl": "../images/vainglory/samual.png",
+          "title" : "!!!!"
+        },
+        {
+          "type": "mascots",
+          "id": 14,
+          "imageUrl": "../images/vainglory/kinetic.png",
+          "title" : ":)"
+        },
+        {
+          "type": "mascots",
+          "id": 15,
+          "imageUrl": "../images/vainglory/gwen.png",
+          "title" : ":D"
+        },
+        {
+          "type": "mascots",
+          "id": 9,
+          "imageUrl": "../images/vainglory/lyra.png",
+          "title" : ":)"
+        },
+        {
+          "type": "mascots",
+          "id": 10,
+          "imageUrl": "../images/vainglory/taka.png",
+          "title" : ":D"
+        },
+        {
+          "type": "mascots",
+          "id": 11,
+          "imageUrl": "../images/vainglory/varya.png",
+          "title" : "crushed"
+        },
+        {
+          "type": "mascots",
+          "id": 12,
+          "imageUrl": "../images/vainglory/celeste2.png",
+          "title" : "it"
+        },
+        {
+          "type": "mascots",
+          "id": 13,
+          "imageUrl": "../images/vainglory/samual.png",
+          "title" : "!!!!"
+        },
+        {
+          "type": "mascots",
+          "id": 14,
+          "imageUrl": "../images/vainglory/kinetic.png",
+          "title" : ":)"
+        },
+        {
+          "type": "mascots",
+          "id": 15,
+          "imageUrl": "../images/vainglory/gwen.png",
+          "title" : ":D"
+        },
+        {
+          "type": "mascots",
+          "id": 9,
+          "imageUrl": "../images/vainglory/lyra.png",
+          "title" : ":)"
+        },
+        {
+          "type": "mascots",
+          "id": 10,
+          "imageUrl": "../images/vainglory/taka.png",
+          "title" : ":D"
+        },
+        {
+          "type": "mascots",
+          "id": 11,
+          "imageUrl": "../images/vainglory/varya.png",
+          "title" : "crushed"
+        },
+        {
+          "type": "mascots",
+          "id": 12,
+          "imageUrl": "../images/vainglory/celeste2.png",
+          "title" : "it"
+        },
+        {
+          "type": "mascots",
+          "id": 13,
+          "imageUrl": "../images/vainglory/samual.png",
+          "title" : "!!!!"
+        },
+        {
+          "type": "mascots",
+          "id": 14,
+          "imageUrl": "../images/vainglory/kinetic.png",
+          "title" : ":)"
+        },
+        {
+          "type": "mascots",
+          "id": 15,
+          "imageUrl": "../images/vainglory/gwen.png",
+          "title" : ":D"
         }
       ]
     };
