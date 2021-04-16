@@ -97,7 +97,6 @@ export default class DragDrop extends Component {
       drag(activeSprite, {
         others,
         onCollision(otherSprite) {
-          debugger;
           let myModel = activeSprite.owner.value;
           let otherModel = otherSprite.owner.value;
           let myPriority = myModel.sortedPriorityValue;
