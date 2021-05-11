@@ -73,58 +73,35 @@ class Drag extends Motion {
 
     while (sprite.owner.value.dragState) {
       let dragState = sprite.owner.value.dragState;
-      // if (dragState.usingKeyboard) {
-      //   sprite.element.focus();
-      //   let chosenTarget = ownTarget;
-      //   while (this.xStep > dragState.xStep) {
-      //     chosenTarget = chooseNextToLeft(chosenTarget, targets);
-      //     this.xStep -= 1;
-      //   }
-      //   while (this.xStep < dragState.xStep) {
-      //     chosenTarget = chooseNextToRight(chosenTarget, targets);
-      //     this.xStep += 1;
-      //   }
-      //   while (this.yStep > dragState.yStep) {
-      //     chosenTarget = chooseNextToUp(chosenTarget, targets);
-      //     this.yStep -= 1;
-      //   }
-      //   while (this.yStep < dragState.yStep) {
-      //     chosenTarget = chooseNextToDown(chosenTarget, targets);
-      //     this.yStep += 1;
-      //   }
-      //   if (chosenTarget !== ownTarget) {
-      //     this.opts.onCollision(chosenTarget.payload);
-      //   }
 
-      // } else {
-        // these track relative motion since the drag started
-        let dx = dragState.latestPointerX - dragState.initialPointerX;
-        let dy = dragState.latestPointerY - dragState.initialPointerY;
+      // these track relative motion since the drag started
+      let dx = dragState.latestPointerX - dragState.initialPointerX;
+      let dy = dragState.latestPointerY - dragState.initialPointerY;
 
-        // adjust our transform to match the latest relative mouse motion
-        sprite.translate(
-          dx + initialTx - sprite.transform.tx,
-          dy + initialTy - sprite.transform.ty
-        );
+      // adjust our transform to match the latest relative mouse motion
+      sprite.translate(
+        dx + initialTx - sprite.transform.tx,
+        dy + initialTy - sprite.transform.ty
+      );
 
-        // now this is our own absolute center position
-        let x = dx + this.dragStartX + sprite.absoluteFinalBounds.width / 3;
-        let y = dy + this.dragStartY + sprite.absoluteFinalBounds.height / 3;
+      // now this is our own absolute center position
+      let x = dx + this.dragStartX + sprite.absoluteFinalBounds.width / 3;
+      let y = dy + this.dragStartY + sprite.absoluteFinalBounds.height / 3;
 
-        // console.log(x, "Value of x");
+      // console.log(x, "Value of x");
 
-        let ownDistance = (x - ownTarget.x) * (x - ownTarget.x) + (y - ownTarget.y) * (y - ownTarget.y);
-        let closerTarget = targets.find(target => {
-          let partialX = target.x - x;
-          let partialY = target.y - y;
-          let distance = partialX * partialX + partialY * partialY;
-          // console.info("DISTANCE", distance);
-          return distance < ownDistance;
-        });
+      let ownDistance = (x - ownTarget.x) * (x - ownTarget.x) + (y - ownTarget.y) * (y - ownTarget.y);
+      let closerTarget = targets.find(target => {
+        let partialX = target.x - x;
+        let partialY = target.y - y;
+        let distance = partialX * partialX + partialY * partialY;
+        // console.info("DISTANCE", distance);
+        return distance < ownDistance;
+      });
 
-        if (closerTarget) {
-          this.opts.onCollision(closerTarget.payload);
-        }
+      if (closerTarget) {
+        this.opts.onCollision(closerTarget.payload);
+      }
       // }
       yield rAF();
     }
@@ -195,7 +172,7 @@ function closest(chosenTarget, candidates) {
   let closestDistance;
   for (let candidate of candidates) {
     let distance = (candidate.x - chosenTarget.x) * (candidate.x - chosenTarget.x) + (candidate.y - chosenTarget.y) * (candidate.y - chosenTarget.y);
-    if (closestDistance == null || distance < closestDistance ) {
+    if (closestDistance == null || distance < closestDistance) {
       closestDistance = distance;
       closest = candidate;
     }

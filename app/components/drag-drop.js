@@ -3,38 +3,29 @@ import move from 'ember-animated/motions/move';
 import { set, computed } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 import { sortBy } from 'lodash';
+import { A } from '@ember/array';
 import { action } from '@ember/object';
 import drag, {
   makeTarget
 } from '../utils/drag';
 
-
-let ankConst = null;
 export default class DragDrop extends Component {
-  queueMe = {}
+  @tracked myCardsArr = A();
 
   constructor() {
     super(...arguments);
-    console.log(this.args.cards);
-    
-    // this.queueMe = {
-    //   obj1: null,
-    //   obj2: null,
-    //   swapMe: function() {
-    //     setTimeout(function() {
-    //       console.log(obj1);
-    //       console.log(obj2);
-    //     }, 0);
-    //     // console.info("MYMODEL, OTHERMODEL", myModel, otherModel)
-    //     // let myPriority = myModel.sortedPriorityValue;
-    //     // set(myModel, 'sortPriority', otherModel.sortedPriorityValue);
-    //     // set(otherModel, 'sortPriority', myPriority);
-    //   }
-    // }
+    this.myCardsArr = A(this.args.cards.toArray());
+  }
+  get sortedMascots() {
+    const arr = this.myCardsArr;
+    console.info(arr, '===================');
+    // return sortBy(this.args.cards.toArray(), m => m.sortedPriorityValue);
+    return this.myCardsArr;
   }
 
-  get sortedMascots() {
-    return sortBy(this.args.cards.toArray(), m => m.sortedPriorityValue);
+
+  myGack() {
+    this.myCardsArr = A(this.args.cards.toArray());
   }
 
   @action
@@ -69,11 +60,14 @@ export default class DragDrop extends Component {
   }
 
   @action
-  beginDragging(mascot, event) {
+  dragStart(mascot, event) {
+    const mascotCardElement = event.target.closest(".mascot-card");
+
+    console.info(mascot.id);
     let dragState;
 
     function stopMouse() {
-      Ember.set(mascot, 'dragState', null);
+      set(mascot, 'dragState', null);
       window.removeEventListener('mouseup', stopMouse);
       window.removeEventListener('mousemove', updateMouse);
     }
@@ -83,66 +77,48 @@ export default class DragDrop extends Component {
       dragState.latestPointerY = event.y;
     }
 
-    if (event instanceof KeyboardEvent) {
-      // This is a keyboard-controlled "drag" instead of a real mouse
-      // drag.
-      dragState = {
-        usingKeyboard: true,
-        xStep: 0,
-        yStep: 0,
-      };
-    } else {
-      dragState = {
-        usingKeyboard: false,
-        initialPointerX: event.x,
-        initialPointerY: event.y,
-        latestPointerX: event.x,
-        latestPointerY: event.y
-      };
-      window.addEventListener('mouseup', stopMouse);
-      window.addEventListener('mousemove', updateMouse);
-    }
-    dragState.lastMovedTime = Date.now();
-    ankConst = Date.now();
-    set(mascot, 'dragState', dragState);
+    dragState = {
+      initialPointerX: event.x,
+      initialPointerY: event.y,
+      latestPointerX: event.x,
+      latestPointerY: event.y
+    };
+
+    set(mascot, 'akuX', dragState.latestPointerX);
+    set(mascot, 'akuY', dragState.latestPointerY);
+
+    window.addEventListener('mouseup', stopMouse);
+    window.addEventListener('mousemove', updateMouse);
+    set(mascot, 'dragState', dragState); //Sets current state on click, can be done in mouse-move too
+    set(mascot, 'title', Math.round(Math.random()*100));
+    this.myGack();
   }
 
-
-
-
-
-  * transition(context) {
+  * transitionAku(context) {
     const { keptSprites } = context;
     const activeSprite = keptSprites.find(sprite => sprite.owner.value.dragState);
-    const others = keptSprites.filter(sprite => sprite !== activeSprite);
-
-    if (others.length < keptSprites.length - 1) {
-      console.log(others)
-    }
+    // const others = keptSprites.filter(sprite => sprite !== activeSprite);
 
     if (activeSprite) {
+      console.log(activeSprite.owner.value.title);
+      console.log(activeSprite.owner.value.dragState);
+      // const {latestPointerX: x , latestPointerY: y} = activeSprite.owner.value.dragState;
+      const {akuX: x , akuY: y} = activeSprite.owner.value;
 
-      drag(activeSprite, {
-        others,
-        onCollision(otherSprite) {
-          let myModel = activeSprite.owner.value;
-          let otherModel = otherSprite.owner.value;
+      // activeSprite.translate(
+      //   x+100,
+      //   y+100
+      // );
 
-          const timeNow = Date.now();
-          // if( timeNow - ankConst > 53){
-            // console.info("MYMODEL, OTHERMODEL", myModel, otherModel)
-            let myPriority = myModel.sortedPriorityValue;
-            set(myModel, 'sortPriority', otherModel.sortedPriorityValue);
-            set(otherModel, 'sortPriority', myPriority);
-            ankConst = timeNow;
-          // }
+      activeSprite.finalBounds.x = x;
+      debugger;
+      activeSprite.finalBounds.y = y; 
 
-        }
-      });
-
+      activeSprite.applyStyles({ 'border': '10px solid red' });
+      move(activeSprite);
     }
 
-    others.forEach(move);
+    // others.forEach(move);
   }
 
 };
