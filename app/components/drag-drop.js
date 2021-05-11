@@ -1,148 +1,104 @@
 import Component from '@glimmer/component';
-import move from 'ember-animated/motions/move';
-import { set, computed } from '@ember/object';
+import { action } from "@ember/object";
 import { tracked } from '@glimmer/tracking';
-import { sortBy } from 'lodash';
-import { action } from '@ember/object';
-import drag, {
-  makeTarget
-} from '../utils/drag';
-
-
-let ankConst = null;
+import move from 'ember-animated/motions/move';
+import drag from '../utils/drag';
 export default class DragDrop extends Component {
-  queueMe = {}
+  allMascotCards = this.args.cards.toArray();
 
-  constructor() {
-    super(...arguments);
-    console.log(this.args.cards);
-    
-    // this.queueMe = {
-    //   obj1: null,
-    //   obj2: null,
-    //   swapMe: function() {
-    //     setTimeout(function() {
-    //       console.log(obj1);
-    //       console.log(obj2);
-    //     }, 0);
-    //     // console.info("MYMODEL, OTHERMODEL", myModel, otherModel)
-    //     // let myPriority = myModel.sortedPriorityValue;
-    //     // set(myModel, 'sortPriority', otherModel.sortedPriorityValue);
-    //     // set(otherModel, 'sortPriority', myPriority);
-    //   }
-    // }
-  }
-
+  get mascots() {
+    return this.allMascotCards;
+  };
   get sortedMascots() {
-    return sortBy(this.args.cards.toArray(), m => m.sortedPriorityValue);
-  }
+    return this.mascots.sortBy("sortPriority");
+  };
 
   @action
-  activateKeyboardNav() {
-    document.querySelector('.mascots .mascot-card').focus();
-  }
-
-  handleKey(event) {
-    let activeMascot = this.cards.find(mascot => mascot.dragState);
-
-    if (activeMascot) {
-      let xStep = 0;
-      let yStep = 0;
-      if (xStep || yStep) {
-        activeMascot.dragState.xStep += xStep;
-        activeMascot.dragState.yStep += yStep;
-        event.stopPropagation();
-        return false;
-      }
-    } else {
-      let elements = [...document.querySelectorAll('.mascots .mascot-card')].filter(element => element !== event.target);
-      let targets = [...elements].map(element => makeTarget(element.getBoundingClientRect(), element));
-      let currentTarget = makeTarget(event.target.getBoundingClientRect(), event.target);
-      let nextTarget;
-
-      if (nextTarget) {
-        nextTarget.payload.focus();
-        event.stopPropagation();
-        return false;
-      }
-    }
-  }
-
-  @action
-  beginDragging(mascot, event) {
+  beginDragging(task, event) {
     let dragState;
+    const self = this;
 
     function stopMouse() {
-      Ember.set(mascot, 'dragState', null);
-      window.removeEventListener('mouseup', stopMouse);
-      window.removeEventListener('mousemove', updateMouse);
+      recalc(self.sortedMascots);
+
+      task.dragState = null;
+      Ember.notifyPropertyChange(task, "dragState");
+      window.removeEventListener("mouseup", stopMouse);
+      window.removeEventListener("mousemove", updateMouse);
     }
 
     function updateMouse(event) {
       dragState.latestPointerX = event.x;
       dragState.latestPointerY = event.y;
+      task.dragState = dragState;
+      Ember.notifyPropertyChange(task, "dragState");
     }
 
-    if (event instanceof KeyboardEvent) {
-      // This is a keyboard-controlled "drag" instead of a real mouse
-      // drag.
-      dragState = {
-        usingKeyboard: true,
-        xStep: 0,
-        yStep: 0,
-      };
-    } else {
-      dragState = {
-        usingKeyboard: false,
-        initialPointerX: event.x,
-        initialPointerY: event.y,
-        latestPointerX: event.x,
-        latestPointerY: event.y
-      };
-      window.addEventListener('mouseup', stopMouse);
-      window.addEventListener('mousemove', updateMouse);
-    }
-    dragState.lastMovedTime = Date.now();
-    ankConst = Date.now();
-    set(mascot, 'dragState', dragState);
-  }
+    dragState = new DragState({
+      initialPointerX: event.x,
+      initialPointerY: event.y,
+      latestPointerX: event.x,
+      latestPointerY: event.y,
+      column: task.state,
+    });
 
+    window.addEventListener("mouseup", stopMouse);
+    window.addEventListener("mousemove", updateMouse);
+    task.dragState = dragState;
 
+    Ember.notifyPropertyChange(task, "dragState");
+  };
 
-
-
-  * transition(context) {
-    const { keptSprites } = context;
-    const activeSprite = keptSprites.find(sprite => sprite.owner.value.dragState);
-    const others = keptSprites.filter(sprite => sprite !== activeSprite);
-
-    if (others.length < keptSprites.length - 1) {
-      console.log(others)
-    }
+  * transition(obj) {
+    let { keptSprites } = obj;
+    let activeSprite = keptSprites.find((sprite) => sprite.owner.value.dragState);
+    console.log(activeSprite);
+    let others = keptSprites.filter((sprite) => sprite !== activeSprite);
 
     if (activeSprite) {
-
       drag(activeSprite, {
         others,
         onCollision(otherSprite) {
+          // console.log('collision');
+
+          // same column
           let myModel = activeSprite.owner.value;
           let otherModel = otherSprite.owner.value;
 
-          const timeNow = Date.now();
-          // if( timeNow - ankConst > 53){
-            // console.info("MYMODEL, OTHERMODEL", myModel, otherModel)
-            let myPriority = myModel.sortedPriorityValue;
-            set(myModel, 'sortPriority', otherModel.sortedPriorityValue);
-            set(otherModel, 'sortPriority', myPriority);
-            ankConst = timeNow;
-          // }
+          let myPriority = myModel.sortPriority;
+          let theirPriority = otherModel.sortPriority;
 
+          // if we are not neighbors make it wonky
+          if (myPriority > theirPriority) {
+            myModel.sortPriority = theirPriority - 0.5;
+          } else {
+            myModel.sortPriority = theirPriority + 0.5;
+          }
+          Ember.notifyPropertyChange(myModel, "sortPriority");
         }
       });
-
     }
-
     others.forEach(move);
   }
+}
+class DragState {
+  @tracked initialPointerX;
+  @tracked initialPointerY;
+  @tracked latestPointerX;
+  @tracked latestPointerY;
+  @tracked column;
+  constructor(obj) {
+    this.initialPointerX = obj.initialPointerX;
+    this.initialPointerY = obj.initialPointerY;
+    this.latestPointerX = obj.latestPointerX;
+    this.latestPointerY = obj.latestPointerY;
+    this.column = obj.column;
+  }
+}
 
-};
+function recalc(columns) {
+  let counter = 1;
+  for (const task of columns) {
+    task.sortPriority = counter++;
+  }
+}

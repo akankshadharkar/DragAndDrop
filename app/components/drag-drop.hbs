@@ -1,14 +1,12 @@
 <div class="tutorial">
-    <div class="mascots" tabindex="0">
-        <AnimatedContainer>
-            {{#animated-each sortedMascots use=transition duration=200 watch="dragState" as |mascot|}}
-            <div class="mascot-card" tabindex="-1" {{ on "mousedown" (fn this.beginDragging mascot) }}>
-                {{mascot.myPriority}}
-                <img class="mascot-card-image" draggable="false" src={{mascot.imageUrl}} />
-                {{!-- <h1>{{mascot.title}}</h1> --}}
-                <h3>{{mascot.id}}</h3>
-            </div>
-            {{/animated-each}}
-        </AnimatedContainer>
-    </div>
+	<div class="mascots">
+		<AnimatedContainer>
+			{{#animated-each sortedMascots use=this.transition duration=300 watch="dragState" as |mascot| }}
+			<div class="mascot-card" tabindex="-1" {{ on "mousedown" (fn this.beginDragging mascot) }}>
+				<img class="mascot-card-image" draggable="false" src={{mascot.imageUrl}} />
+				<h3>{{mascot.id}}</h3>
+			</div>
+			{{/animated-each}}
+		</AnimatedContainer>
+	</div>
 </div>
