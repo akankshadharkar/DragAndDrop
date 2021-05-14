@@ -52,14 +52,12 @@ export default class DragDrop extends Component {
   * transition(obj) {
     let { keptSprites } = obj;
     let activeSprite = keptSprites.find((sprite) => sprite.owner.value.dragState);
-    console.log(activeSprite);
     let others = keptSprites.filter((sprite) => sprite !== activeSprite);
 
     if (activeSprite) {
       drag(activeSprite, {
         others,
         onCollision(otherSprite) {
-          // console.log('collision');
 
           // same column
           let myModel = activeSprite.owner.value;

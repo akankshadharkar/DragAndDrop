@@ -22,7 +22,6 @@ class Drag extends Motion {
   }
 
   *animate() {
-    console.log("GETTING ANIMATED")
     let sprite = this.sprite;
 
     let initialTx, initialTy;
@@ -55,7 +54,7 @@ class Drag extends Motion {
       "z-index": "1",
       outline: "none",
     });
-	
+
     while (sprite.owner.value.dragState) {
       let dragState = sprite.owner.value.dragState;
       // these track relative motion since the drag started
@@ -91,10 +90,15 @@ class Drag extends Motion {
   }
 }
 
-export function makeTarget(bounds, payload) {
+function makeTarget(bounds, payload) {
+  console.log(payload);
   return {
     x: bounds.left + bounds.width / 2,
     y: bounds.top + bounds.height / 2,
     payload,
   };
+}
+
+function isMovingDiagonally(bounds) {
+  
 }
